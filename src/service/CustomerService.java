@@ -4,6 +4,7 @@ import dao.CustomerDao;
 import domain.Customer;
 import domain.PageBean;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -22,13 +23,11 @@ public class CustomerService
 //    {
 //        return customerDao.findAll();
 //    }
-    public PageBean<Customer> findAll(int pc,int pr)
-    {
+    public PageBean<Customer> findAll(int pc,int pr) throws SQLException {
         return customerDao.findAll(pc,pr);
     }
 
-    public Customer find(String id)
-    {
+    public Customer find(String id) throws SQLException {
         return customerDao.find(id);
     }
 

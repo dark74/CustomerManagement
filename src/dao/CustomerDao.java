@@ -9,6 +9,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.spi.CurrencyNameProvider;
@@ -30,7 +31,7 @@ public class CustomerDao
             qr.update(sql, params);
         }catch (Exception e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -44,9 +45,8 @@ public class CustomerDao
 //            throw new RuntimeException(e);
 //        }
 //    }
-    public PageBean<Customer> findAll(int pc, int pr)
-    {
-        try{
+    public PageBean<Customer> findAll(int pc, int pr) throws SQLException {
+
             /*
              *1.他需要创建pageBean对象pb
              * 2.设置pb的pc和pr
@@ -71,21 +71,14 @@ public class CustomerDao
             pb.setBeanList(beanList);
 
             return pb;
-        }catch (Exception e)
-        {
-            throw new RuntimeException(e);
-        }
+
     }
 
-    public Customer find(String id)
-    {
-        try {
+    public Customer find(String id) throws SQLException {
+
             String sql = "select * from t_customer where id=?";
             return qr.query(sql, new BeanHandler<Customer>(Customer.class), id);
-        }catch (Exception e)
-        {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public void edit(Customer customer)
@@ -97,7 +90,7 @@ public class CustomerDao
             qr.update(sql,params);
         }catch (Exception e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -109,7 +102,7 @@ public class CustomerDao
             qr.update(sql, id);
         }catch (Exception e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

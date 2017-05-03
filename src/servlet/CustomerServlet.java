@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -40,7 +41,7 @@ public class CustomerServlet extends BaseServlet {
 //        return "/list.jsp";
 //    }
 
-    public String findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
        /*
         *1.获取页面传递的pc
         * 2.给定pr的值
@@ -74,7 +75,7 @@ public class CustomerServlet extends BaseServlet {
         return Integer.parseInt(value);
     }
 
-    public String preEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String preEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String id = request.getParameter("id");
         Customer customer = customerService.find(id);
 
